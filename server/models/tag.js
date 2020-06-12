@@ -1,5 +1,5 @@
 const tag = (sequelize, DataTypes) => {
-  const Tag = sequelize.define('tag', {
+  const Tag = sequelize.define('Tag', {
     name: {
       type: DataTypes.STRING,
       allowNull: false,

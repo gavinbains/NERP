@@ -5,8 +5,8 @@ const cors = require('cors');
 
 // dotenv
 import 'dotenv/config';
-// models
-import models from './server/models';
+// models and sequelize
+import models, { sequelize } from './server/models';
 // routes
 import routes from './server/routes';
 
@@ -14,10 +14,11 @@ import routes from './server/routes';
 const app = express();
 
 // use CORS to avoid cross-origin
-var corsOptions = {
-  origin: "http://localhost:8000"
-};
-app.use(cors(corsOptions));
+// var corsOptions = {
+//   origin: "http://localhost:8081"
+// };
+// app.use(cors(corsOptions));
+app.use(cors());
 
 // Log requests to the console.
 app.use(logger('dev'));
@@ -27,7 +28,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 // custom middleware for models/auth
-app.use((req, res, next) => {
+app.use(async (req, res, next) => {
   req.context = {
     models,
     me: await models.User.findByLogin('gbains'),
@@ -55,9 +56,10 @@ sequelize.sync({ force: eraseDatabaseOnSync }).then(async () => {
     createUsersWithMessages();
   }
 
-  app.listen(process.env.PORT, () =>
-    console.log(`Example app listening on port ${process.env.PORT}!`),
-  );
+  // This app.listen block is executed in bin/www
+  // app.listen(process.env.PORT, () =>
+  //   console.log(`Example app listening on port ${process.env.PORT}!`),
+  // );
 });
 
 // SEED DB
@@ -65,9 +67,10 @@ const createUsersWithMessages = async () => {
   await models.User.create(
     {
       username: 'gbains',
+      email: 'gbains@usc.edu',
       messages: [
         {
-          text: 'Published the Road to learn React',
+          text: 'Gavin Message 1',
         },
       ],
     },
@@ -79,12 +82,13 @@ const createUsersWithMessages = async () => {
   await models.User.create(
     {
       username: 'cchyung',
+      email: 'cchyung@usc.edu',
       messages: [
         {
-          text: 'Happy to release ...',
+          text: 'Conner Message 1',
         },
         {
-          text: 'Published a complete ...',
+          text: 'Conner Message 2',
         },
       ],
     },
