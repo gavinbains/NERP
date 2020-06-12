@@ -12,13 +12,15 @@ Node + NPM
 ```
 https://www.npmjs.com/get-npm
 ```
-
 PostgreSQL
 ```
 brew update
 brew install postgresql
 ```
-
+Express
+```
+npm install --save express body-parser morgan
+```
 Sequelize + PostgreSQL Wrapper
 ```
 npm install --save sequelize pg pg-hstore
