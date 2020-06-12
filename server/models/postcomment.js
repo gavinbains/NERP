@@ -4,14 +4,14 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    complete: {
-      type: DataTypes.BOOLEAN,
-      defaultValue: false,
-    }
   });
   PostComment.associate = (models) => {
     PostComment.belongsTo(models.Post, {
       foreignKey: 'postId',
+      onDelete: 'CASCADE',
+    });
+    PostComment.belongsTo(models.User, {
+      foreignKey: 'userId',
       onDelete: 'CASCADE',
     });
   };

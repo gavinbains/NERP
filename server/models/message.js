@@ -1,6 +1,6 @@
 const message = (sequelize, DataTypes) => {
   const Message = sequelize.define('message', {
-    text: {
+    content: {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
