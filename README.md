@@ -3,7 +3,11 @@
 NERP
 
 ## Getting Started
-
+After cloning, run
+```
+npm install
+```
+After node dependencies are installed you can start the program with
 ```
 npm run start:dev
 ```
