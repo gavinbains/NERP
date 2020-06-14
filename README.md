@@ -48,27 +48,40 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 ## Directory Tree
 ```
 .
+├── README.md
 ├── app.js
 ├── bin
 │   └── www
-├── node_modules
 ├── package-lock.json
 ├── package.json
-├── server
-│   ├── config
-│   │   └── config.json
-│   ├── migrations
-│   ├── models
-│   │   ├── index.js
-│   │   ├── message.js
-│   │   ├── post.js
-│   │   ├── postcomment.js
-│   │   └── user.js
-│   ├── routes
-│   │   ├── index.js
-│   │   ├── message.js
-│   │   ├── session.js
-│   │   └── user.js
-│   └── seeders
-└── README.md
+└── server
+    ├── config
+    │   └── config.json
+    ├── controllers
+    │   ├── index.js
+    │   ├── postcomments.js
+    │   ├── posts.js
+    │   └── users.js
+    ├── migrations
+    │   ├── 000-create-user.js
+    │   ├── 001-create-post.js
+    │   ├── 002-create-post-comment.js
+    │   ├── 003-create-message.js
+    │   └── 004-create-tag.js
+    ├── models
+    │   ├── index.js
+    │   ├── message.js
+    │   ├── post.js
+    │   ├── postcomment.js
+    │   ├── tag.js
+    │   └── user.js
+    ├── routes
+    │   ├── index.js
+    │   ├── message.js
+    │   ├── post.js
+    │   ├── postcomment.js
+    │   ├── session.js
+    │   └── user.js
+    └── seeders
+        └── tags.txt
 ```
