@@ -27,6 +27,10 @@ Express
 ```
 npm install --save express body-parser morgan
 ```
+SequelizeCLI
+```
+npm install -g sequelize-cli
+```
 Sequelize + PostgreSQL Wrapper
 ```
 npm install --save sequelize pg pg-hstore
