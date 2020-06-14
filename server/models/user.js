@@ -23,7 +23,8 @@ const user = (sequelize, DataTypes) => {
   User.associate = models => {
     // on delete user delete all messages that belong to user with CASCADE
     User.hasMany(models.Message, { onDelete: 'CASCADE' });
-    User.hasMany(models.PostComment, { onDelete: 'CASCADE' });
+    // User.hasMany(models.PostComment, { onDelete: 'CASCADE' });
+    // User.hasMany(models.Post, { onDelete: 'CASCADE' });
   };
 
   User.findByLogin = async login => {

@@ -40,6 +40,8 @@ app.use(async (req, res, next) => {
 app.use('/session', routes.session);
 app.use('/users', routes.user);
 app.use('/messages', routes.message);
+app.use('/posts', routes.post);
+app.use('/postcomments', routes.postcomment);
 
 // Setup a default catch-all route that sends back a welcome message in JSON format.
 app.get('/', (req, res) => res.status(200).send({
@@ -68,9 +70,9 @@ const createUsersWithMessages = async () => {
     {
       username: 'gbains',
       email: 'gbains@usc.edu',
-      messages: [
+      Messages: [
         {
-          text: 'Gavin Message 1',
+          text: 'Gavin Message 0',
         },
       ],
     },
@@ -83,17 +85,37 @@ const createUsersWithMessages = async () => {
     {
       username: 'cchyung',
       email: 'cchyung@usc.edu',
-      messages: [
+      Messages: [
         {
-          text: 'Conner Message 1',
+          text: 'Conner Message 0',
         },
         {
-          text: 'Conner Message 2',
+          text: 'Conner Message 1',
         },
       ],
     },
     {
       include: [models.Message],
+    },
+  );
+
+  await models.Post.create(
+    {
+      title: 'Post Title 0',
+      userId: 1,
+      PostComments: [
+        {
+          userId: 1,
+          text: 'Post 0 Content 0',
+        },
+        {
+          userId: 1,
+          text: 'Post 0 Content 1',
+        },
+      ],
+    },
+    {
+      include: [models.PostComment],
     },
   );
 };

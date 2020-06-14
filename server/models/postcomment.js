@@ -1,6 +1,6 @@
 module.exports = (sequelize, DataTypes) => {
   const PostComment = sequelize.define('PostComment', {
-    content: {
+    text: {
       type: DataTypes.STRING,
       allowNull: false,
     },
