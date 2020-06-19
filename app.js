@@ -77,7 +77,9 @@ const createUsersWithMessages = async () => {
       ],
     },
     {
-      include: [models.Message],
+      include: [{
+        model: models.Message,
+      }],
     },
   );
 
@@ -95,7 +97,9 @@ const createUsersWithMessages = async () => {
       ],
     },
     {
-      include: [models.Message],
+      include: [{
+        model: models.Message,
+      }],
     },
   );
 
@@ -115,7 +119,9 @@ const createUsersWithMessages = async () => {
       ],
     },
     {
-      include: [models.PostComment],
+      include: [{
+        model: models.PostComment,
+      }],
     },
   );
 };
