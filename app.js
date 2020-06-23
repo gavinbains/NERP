@@ -35,6 +35,7 @@ app.use(async (req, res, next) => {
   };
   next();
 });
+// passport JWT encryption backend
 
 // use routes
 app.use('/session', routes.session);

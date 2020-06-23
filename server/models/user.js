@@ -17,6 +17,24 @@ const user = (sequelize, DataTypes) => {
         isEmail: true,
       },
     },
+    password: {
+      type: DataTypes.STRING,
+      unique: false,
+      allowNull: false,
+      validate: {
+        notEmpty: true,
+      },
+    },
+    name: {
+      type: DataTypes.STRING,
+      unique: false,
+      allowNull: true,
+    },
+    bio: {
+      type: DataTypes.STRING,
+      unique: false,
+      allowNull: true,
+    },
   });
 
   // associate user with message 1 to Many
