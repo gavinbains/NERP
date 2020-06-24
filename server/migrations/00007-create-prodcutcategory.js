@@ -1,10 +1,8 @@
-// https://gist.github.com/devdbrandy/df7f88b96edd51df71fa94ae774d51bc
-// https://nodeontrain.xyz/tuts/relationship_model/
 module.exports = {
   up: (queryInterface, Sequelize) => {
     // Product belongsToMany Tag
     return queryInterface.createTable(
-      'UserFollowers',
+      'ProductCategories',
       {
         createdAt: {
           allowNull: false,
@@ -14,11 +12,11 @@ module.exports = {
           allowNull: false,
           type: Sequelize.DATE,
         },
-        userId: {
+        productId: {
           type: Sequelize.INTEGER,
           primaryKey: true,
         },
-        followerId: {
+        categoryId: {
           type: Sequelize.INTEGER,
           primaryKey: true,
         },
@@ -28,6 +26,6 @@ module.exports = {
 
   down: (queryInterface, Sequelize) => {
     // remove table
-    return queryInterface.dropTable('UserFollowers');
+    return queryInterface.dropTable('ProductCategories');
   },
 };

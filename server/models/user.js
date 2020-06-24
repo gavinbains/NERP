@@ -1,4 +1,4 @@
-const user = (sequelize, DataTypes) => {
+module.exports = (sequelize, DataTypes) => {
   const User = sequelize.define('User', {
     username: {
       type: DataTypes.STRING,
@@ -35,6 +35,10 @@ const user = (sequelize, DataTypes) => {
       unique: false,
       allowNull: true,
     },
+    image: {
+      type: DataTypes.BLOB,
+      allowNull: true,
+    },
   });
 
   // associate user with message 1 to Many
@@ -61,5 +65,3 @@ const user = (sequelize, DataTypes) => {
 
   return User;
 };
-
-export default user;

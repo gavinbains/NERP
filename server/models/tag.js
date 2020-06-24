@@ -1,4 +1,4 @@
-const tag = (sequelize, DataTypes) => {
+module.exports = (sequelize, DataTypes) => {
   const Tag = sequelize.define('Tag', {
     name: {
       type: DataTypes.STRING,
@@ -23,5 +23,3 @@ const tag = (sequelize, DataTypes) => {
 
   return Tag;
 };
-
-export default tag;
