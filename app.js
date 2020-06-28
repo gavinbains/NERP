@@ -3,6 +3,13 @@ const logger = require('morgan');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 
+// jwt dependencies
+const jwt = require('jsonwebtoken');
+const passport = require('passport');
+const passportJWT = require('passport-jwt');
+
+const User = require("./server/models/user");
+
 // dotenv
 import 'dotenv/config';
 // models and sequelize
@@ -35,7 +42,32 @@ app.use(async (req, res, next) => {
   };
   next();
 });
+
 // passport JWT encryption backend
+
+// passport config
+let ExtractJwt = passportJWT.ExtractJwt;
+let JwtStrategy = passportJWT.Strategy;
+
+let jwtOptions = {};
+jwtOptions.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken();
+jwtOptions.secretOrKey = 'secret';
+
+// create local strategy
+let strategy = new JwtStrategy(jwtOptions, function(jwt_payload, next) {
+  console.log('payload received', jwt_payload);
+  let user = getUser({ id: jwt_payload.id });
+
+  if (user) {
+    next(null, user);
+  } else {
+    next(null, false);
+  }
+});
+
+// use strategy
+passport.use(strategy);
+app.use(passport.initialize())
 
 // use routes
 app.use('/session', routes.session);
@@ -64,6 +96,12 @@ sequelize.sync({ force: eraseDatabaseOnSync }).then(async () => {
   //   console.log(`Example app listening on port ${process.env.PORT}!`),
   // );
 });
+
+const getUser = async obj => {
+  return await User.findOne({
+    where: obj,
+  });
+};
 
 // SEED DB
 const createUsersWithMessages = async () => {
@@ -127,4 +165,9 @@ const createUsersWithMessages = async () => {
   );
 };
 
-module.exports = app;
+module.exports = {
+  'app': app,
+  'passport': passport,
+  'jwt': jwt,
+  'jwtOptions': jwtOptions
+};
