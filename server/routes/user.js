@@ -2,15 +2,15 @@ const express = require("express");
 const router = express.Router();
 var bcrypt = require("bcryptjs");
 
-const { sequelize } = require('../models');
-const DataTypes = sequelize.DataTypes;
-const User = require('../models/user')(sequelize, DataTypes);
+const Sequelize = require('sequelize');
+const DataTypes = Sequelize.DataTypes;
 
-const jwt = require('../../app').jwt;
-const jwtOptions = require('../../app').jwtOptions;
+const sequelize = require('../models').sequelize;
+const User = require('../models/user')(sequelize, DataTypes);
 
 router.post('/register', async function(req, res) {
 
+	let user;
 	user = await User.findOne({ username: req.body.username });
 
 	if (user != null) { 
@@ -29,23 +29,6 @@ router.post('/register', async function(req, res) {
 	});
 
 	res.json({ user, msg: 'account created successfully' });
-});
-
-router.post('/login', async function(req, res) {
-  const { username, password } = req.body;
-  if (username && password) {
-    let user = await User.findOne({ username: username });
-    if (!user) {
-      res.status(401).json({ msg: 'No such user found' });
-    }
-    if (bcrypt.compareSync(password, user.password)) {
-      let payload = { id: user.id };
-      let token = jwt.sign(payload, jwtOptions.secretOrKey);
-      res.json({ msg: 'ok', token: token });
-    } else {
-      res.status(401).json({ msg: 'Password is incorrect' });
-    }
-  }
 });
 
 router.get('/', async (req, res) => {

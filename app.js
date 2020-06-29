@@ -2,6 +2,7 @@ const express = require('express');
 const logger = require('morgan');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+var bcrypt = require("bcryptjs");
 
 // jwt dependencies
 const jwt = require('jsonwebtoken');
@@ -81,6 +82,23 @@ app.get('/', (req, res) => res.status(200).send({
   message: 'Welcome to the beginning of nothingness.',
 }));
 
+app.post('/login', async function(req, res) {
+  const { username, password } = req.body;
+  if (username && password) {
+    let user = await getUser({ username: username });
+    if (!user) {
+      res.status(401).json({ msg: 'No such user found' });
+    }
+    if (bcrypt.compareSync(password, user.password)) {
+      let payload = { id: user.id };
+      let token = jwt.sign(payload, jwtOptions.secretOrKey);
+      res.json({ msg: 'ok', token: token });
+    } else {
+      res.status(401).json({ msg: 'Password is incorrect' });
+    }
+  }
+});
+
 // * Start * //
 
 const eraseDatabaseOnSync = true;
@@ -98,7 +116,7 @@ sequelize.sync({ force: eraseDatabaseOnSync }).then(async () => {
 });
 
 const getUser = async obj => {
-  return await User.findOne({
+  return await models.User.findOne({
     where: obj,
   });
 };
@@ -167,7 +185,5 @@ const createUsersWithMessages = async () => {
 
 module.exports = {
   'app': app,
-  'passport': passport,
-  'jwt': jwt,
-  'jwtOptions': jwtOptions
+  'passport': passport
 };
