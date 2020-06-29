@@ -1,6 +1,6 @@
 {
   "development": {
-    "username": "pradyumanmittal",
+    "username": "gbains",
     "password": null,
     "database": "sano-dev",
     "host": "127.0.0.1",
@@ -8,7 +8,7 @@
     "dialect": "postgres"
   },
   "test": {
-    "username": "pradyumanmittal",
+    "username": "gbains",
     "password": null,
     "database": "sano-test",
     "host": "127.0.0.1",
@@ -16,7 +16,7 @@
     "dialect": "postgres"
   },
   "production": {
-    "username": "pradyumanmittal",
+    "username": "gbains",
     "password": null,
     "database": "sano-prod",
     "host": "127.0.0.1",

@@ -127,6 +127,7 @@ const createUsersWithMessages = async () => {
     {
       username: 'gbains',
       email: 'gbains@usc.edu',
+      password: 'usc',
       Messages: [
         {
           text: 'Gavin Message 0',
@@ -144,6 +145,7 @@ const createUsersWithMessages = async () => {
     {
       username: 'cchyung',
       email: 'cchyung@usc.edu',
+      password: 'usc',
       Messages: [
         {
           text: 'Conner Message 0',
