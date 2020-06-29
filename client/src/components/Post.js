@@ -8,7 +8,7 @@ const Post = props => {
     description: "",
     published: false
   };
-  const [currentPost, setCurrentPost] = useState(initialPostlState);
+  const [currentPost, setCurrentPost] = useState(initialPostState);
   const [message, setMessage] = useState("");
 
   const getPost = id => {
