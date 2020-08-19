@@ -6,9 +6,9 @@ const cors = require('cors');
 // dotenv
 import 'dotenv/config';
 // models and sequelize
-import models, { sequelize } from './server/models';
+import models, { sequelize } from './src/models';
 // routes
-import routes from './server/routes';
+import routes from './src/routes';
 
 // Set up the express app
 const app = express();
