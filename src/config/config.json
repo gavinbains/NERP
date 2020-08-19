@@ -1,0 +1,26 @@
+{
+  "development": {
+    "username": "gbains",
+    "password": null,
+    "database": "sano-dev",
+    "host": "127.0.0.1",
+    "port": 5432,
+    "dialect": "postgres"
+  },
+  "test": {
+    "username": "gbains",
+    "password": null,
+    "database": "sano-test",
+    "host": "127.0.0.1",
+    "port": 5432,
+    "dialect": "postgres"
+  },
+  "production": {
+    "username": "gbains",
+    "password": null,
+    "database": "sano-prod",
+    "host": "127.0.0.1",
+    "port": 5432,
+    "dialect": "postgres"
+  }
+}
