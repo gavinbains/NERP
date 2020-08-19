@@ -54,7 +54,7 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 │   └── www
 ├── package-lock.json
 ├── package.json
-└── server
+└── src
     ├── config
     │   └── config.json
     ├── controllers
