@@ -1,7 +1,8 @@
 const express = require('express');
-const logger = require('morgan');
+const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const logger = require('./logger');
 
 // dotenv
 import 'dotenv/config';
@@ -21,7 +22,7 @@ const app = express();
 app.use(cors());
 
 // Log requests to the console.
-app.use(logger('dev'));
+app.use(morgan('dev'));
 
 // Parse incoming requests data (https://github.com/expressjs/body-parser)
 app.use(bodyParser.json());
@@ -57,6 +58,7 @@ sequelize.sync({ force: eraseDatabaseOnSync }).then(async () => {
   if (eraseDatabaseOnSync) {
     // SEED DB
     createUsersWithMessages();
+    logger.info('createUsersWithMessages');
   }
 
   // This app.listen block is executed in bin/www
