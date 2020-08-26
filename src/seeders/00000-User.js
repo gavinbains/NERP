@@ -9,19 +9,25 @@ module.exports = {
       bio: 'Married to Jane Doe',
       email: 'johnDoe@test.com',
       password: 'janedoe69',
-      username: 'johndoe69'
+      username: 'johndoe69',
+      createdAt: new Date(),
+      updatedAt: new Date()
     }, {
       name: 'Gavin Bains',
       bio: 'USC',
       email: 'gbains@usc.edu',
       password: 'usc',
-      username: 'thegavinbains'
+      username: 'thegavinbains',
+      createdAt: new Date(),
+      updatedAt: new Date()
     }, {
       name: 'Conner Chyung',
       bio: 'USC',
       email: 'cchyung@usc.edu',
       password: 'usc',
-      username: 'cc.7zip'
+      username: 'cc.7zip',
+      createdAt: new Date(),
+      updatedAt: new Date()
     }], {});
   },
 

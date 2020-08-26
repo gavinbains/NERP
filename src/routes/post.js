@@ -8,12 +8,12 @@ router.get('/', async (req, res) => {
   return res.send(posts);
 });
 
-router.get('/api', (req, res) => res.status(200).send({
+router.get('/api/home', (req, res) => res.status(200).send({
   message: 'Welcome to the Posts API',
 }));
 
-router.post('/api/posts', postsController.create);
-router.get('/api/posts', postsController.list);
+router.post('/api', postsController.create);
+router.get('/api', postsController.list);
 router.get('/api/:postId', postsController.retrieve);
 router.put('/api/:postId', postsController.update);
 router.delete('/api/:postId', postsController.destroy);

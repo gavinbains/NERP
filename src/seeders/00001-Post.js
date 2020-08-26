@@ -1,7 +1,7 @@
 // sequelize-fixtures could be an option to make seeding easier
 
 'use strict';
-
+const models = require('../models');
 module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.bulkInsert('Posts', [{

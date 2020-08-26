@@ -57,7 +57,7 @@ const eraseDatabaseOnSync = true;
 sequelize.sync({ force: eraseDatabaseOnSync }).then(async () => {
   if (eraseDatabaseOnSync) {
     // SEED DB
-    createUsersWithMessages();
+    // createUsersWithMessages();
     logger.info('createUsersWithMessages');
   }
 
