@@ -3,11 +3,6 @@ import { Router } from 'express';
 const router = Router();
 const postsController = require('../controllers').posts;
 
-router.get('/', async (req, res) => {
-  const posts = await req.context.models.Post.findAll();
-  return res.send(posts);
-});
-
 router.get('/api/home', (req, res) => res.status(200).send({
   message: 'Welcome to the Posts API',
 }));
