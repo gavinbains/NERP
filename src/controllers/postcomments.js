@@ -1,4 +1,5 @@
 const PostComment = require('../models').PostComment;
+const Post = require('../models').Post;
 
 module.exports = {
   create(req, res) {
@@ -8,8 +9,27 @@ module.exports = {
         postId: req.params.postId,
         userId: req.params.userId,
       })
-      .then(postComment => res.status(201).send(postComment))
-      .catch(error => res.status(400).send(error));
+      .then((postComment) => res.status(201).send(postComment))
+      .catch((error) => res.status(400).send(error));
+  },
+
+  retrieve(req, res) {
+    return PostComment
+      .findById(req.params.postId, {
+        include: [{
+          model: Post,
+          as: 'post',
+        }],
+      })
+      .then((postComment) => {
+        if (!postComment) {
+          return res.status(404).send({
+            message: 'PostComment Not Found',
+          });
+        }
+        return res.status(200).send(postComment);
+      })
+      .catch((error) => res.status(400).send(error));
   },
 
   update(req, res) {
@@ -21,7 +41,7 @@ module.exports = {
           userId: req.params.userId,
         },
       })
-      .then(postComment => {
+      .then((postComment) => {
         if (!postComment) {
           return res.status(404).send({
             message: 'PostComment Not Found',
@@ -32,10 +52,10 @@ module.exports = {
           .update({
             text: req.body.text || postComment.text,
           })
-          .then(updatedPostComment => res.status(200).send(updatedPostComment))
-          .catch(error => res.status(400).send(error));
+          .then((updatedPostComment) => res.status(200).send(updatedPostComment))
+          .catch((error) => res.status(400).send(error));
       })
-      .catch(error => res.status(400).send(error));
+      .catch((error) => res.status(400).send(error));
   },
 
   destroy(req, res) {
@@ -47,7 +67,7 @@ module.exports = {
           userId: req.params.userId,
         },
       })
-      .then(postComment => {
+      .then((postComment) => {
         if (!postComment) {
           return res.status(404).send({
             message: 'PostComment Not Found',
@@ -57,8 +77,8 @@ module.exports = {
         return postComment
           .destroy()
           .then(() => res.status(204).send())
-          .catch(error => res.status(400).send(error));
+          .catch((error) => res.status(400).send(error));
       })
-      .catch(error => res.status(400).send(error));
+      .catch((error) => res.status(400).send(error));
   },
 };
