@@ -4,7 +4,10 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
+  }, {
+    tableName: 'postComments'
   });
+
   PostComment.associate = (models) => {
     PostComment.belongsTo(models.Post, {
       foreignKey: 'postId',

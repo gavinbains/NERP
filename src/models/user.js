@@ -39,6 +39,8 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.BLOB,
       allowNull: true,
     },
+  }, {
+    tableName: 'users'
   });
 
   // associate user with message 1 to Many

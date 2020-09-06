@@ -43,11 +43,13 @@ module.exports = (sequelize, DataTypes) => {
       unique: false,
       allowNull: true,
     },
+  }, {
+    tableName: 'products'
   });
 
   Product.associate = (models) => {
     Product.belongsToMany(models.Category, {
-      through: "ProductCategories",
+      through: "product_categories",
       as: "categories",
       foreignKey: 'productId',
       onDelete: 'CASCADE',

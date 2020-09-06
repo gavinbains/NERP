@@ -7,6 +7,8 @@ module.exports = (sequelize, DataTypes) => {
         notEmpty: true,
       },
     }
+  }, {
+    tableName: 'tags'
   });
 
   // may need manytomany relationship between tags and posts
@@ -14,7 +16,7 @@ module.exports = (sequelize, DataTypes) => {
   // https://bezkoder.com/sequelize-associate-many-to-many/
   Tag.associate = (models) => {
     Tag.belongsToMany(models.Post, {
-      through: "PostTags",
+      through: "post_tags",
       as: "posts",
       foreignKey: 'tagId',
       onDelete: 'CASCADE',

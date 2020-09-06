@@ -4,6 +4,8 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
+  }, {
+    tableName: 'posts'
   });
 
   Post.associate = (models) => {
@@ -15,7 +17,7 @@ module.exports = (sequelize, DataTypes) => {
       onDelete: 'CASCADE',
     });
     Post.belongsToMany(models.Tag, {
-      through: 'PostTags',
+      through: 'post_tags',
       as: 'tags',
       foreignKey: 'postId',
       onDelete: 'CASCADE',
